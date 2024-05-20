@@ -1,13 +1,13 @@
-'use client';
+import dynamic from "next/dynamic"
 
-import React from "react";
+const Background = dynamic(() => import('@/app/components/Background'), {
+  loading: () => <p>Loading...</p>
+})
 
 export default function Home() {
-  return (
-    <React.Fragment>
-      <div className=" flex justify-center items-center h-screen w-screen text-2xl font-bold">
-        Kushal Harsora
-      </div>
-    </React.Fragment>
-  );
+  return(
+    <main className=" relative h-screen">
+      <Background />
+    </main>
+  )
 }
