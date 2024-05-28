@@ -8,8 +8,8 @@ import { Environment } from "@react-three/drei";
 const Background: React.FC = () => {
   return(
     <Canvas style={{backgroundColor: "#000"}}>
-      <directionalLight intensity={3} position={[0, 3, 2]}/>
-      <Environment preset="city" />
+      <directionalLight intensity={0.5} position={[0, 3, 2]}/>
+      <Environment preset='city' />
       <Models />
     </Canvas>
   )
