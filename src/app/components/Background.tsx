@@ -2,15 +2,15 @@
 
 import React from "react";
 import { Canvas } from "@react-three/fiber";
-import Models from "./Models"
+import TestModel from "./TestModel"
 import { Environment } from "@react-three/drei";
 
 const Background: React.FC = () => {
   return(
     <Canvas style={{backgroundColor: "#000"}}>
-      <directionalLight intensity={0.5} position={[0, 3, 2]}/>
+      <directionalLight intensity={0.01} position={[0, 2, 1]}/>
       <Environment preset='city' />
-      <Models />
+      <TestModel />
     </Canvas>
   )
 }
