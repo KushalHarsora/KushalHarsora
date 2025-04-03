@@ -15,7 +15,7 @@ const Model = () => {
     const earthRef = React.useRef<THREE.Object3D>(null);
 
     const initProps = {
-        pos: [10, 0, 0] as [number, number, number],
+        pos: [-250, 100, 60] as [number, number, number],
         intensity: 10 as number,
     }
 
@@ -62,7 +62,7 @@ const Model = () => {
                         makeDefault fov={30}
                         near={0.1}
                         far={10000}
-                        position={[0, 0, 1]}
+                        position={[0, 0, 2]}
                     />
 
                     <directionalLight
@@ -76,7 +76,7 @@ const Model = () => {
                         shadow-radius={2}
                     />
 
-                    <primitive ref={earthRef} object={Earth} scale={1} position={[0, -75, -125]} />
+                    <primitive ref={earthRef} object={Earth} scale={1} position={[0, -67.5, -135]} />
 
                     <EffectComposer depthBuffer>
                         <BrightnessContrast brightness={0} contrast={0.5} />
