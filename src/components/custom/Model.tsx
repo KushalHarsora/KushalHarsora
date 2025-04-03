@@ -1,8 +1,12 @@
 import React from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { useGLTF } from '@react-three/drei'
+import { PerspectiveCamera, useGLTF } from '@react-three/drei'
 import { EffectComposer, BrightnessContrast } from '@react-three/postprocessing'
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Model = () => {
 
@@ -11,9 +15,16 @@ const Model = () => {
     const earthRef = React.useRef<THREE.Object3D>(null);
 
     const initProps = {
-        pos: [-250, 60, 20] as [number, number, number],
+        pos: [10, 0, 0] as [number, number, number],
         intensity: 10 as number,
     }
+
+    Earth.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+            child.material.envMapIntensity = 0.5;
+            child.material.needsUpdate = true;
+        }
+    });
 
     React.useEffect(() => {
         const animate = () => {
@@ -32,9 +43,28 @@ const Model = () => {
         <React.Fragment>
             <section className='h-screen w-screen flex items-center justify-center bg-black'>
                 <Canvas
-                    camera={{ position: [0, 0.75, 20], fov: 25 }}
                     style={{ backgroundColor: 'black' }}
+                    shadows
+                    gl={{
+                        preserveDrawingBuffer: true,
+                        antialias: true,
+                        alpha: true,
+                        powerPreference: 'low-power',
+                        stencil: false,
+                        depth: true,
+                        failIfMajorPerformanceCaveat: true,
+                        logarithmicDepthBuffer: true,
+                        toneMapping: THREE.ACESFilmicToneMapping,
+                        toneMappingExposure: 1.5,
+                    }}
                 >
+                    <PerspectiveCamera
+                        makeDefault fov={30}
+                        near={0.1}
+                        far={10000}
+                        position={[0, 0, 1]}
+                    />
+
                     <directionalLight
                         color={'#ffffff'}
                         position={initProps.pos}
@@ -46,7 +76,7 @@ const Model = () => {
                         shadow-radius={2}
                     />
 
-                    <primitive ref={earthRef} object={Earth} scale={1} position={[0, -100, -125]} />
+                    <primitive ref={earthRef} object={Earth} scale={1} position={[0, -75, -125]} />
 
                     <EffectComposer depthBuffer>
                         <BrightnessContrast brightness={0} contrast={0.5} />
