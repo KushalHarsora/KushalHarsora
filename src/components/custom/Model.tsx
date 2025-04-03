@@ -1,7 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, useGLTF } from '@react-three/drei'
+import { useGLTF } from '@react-three/drei'
 import { EffectComposer, BrightnessContrast } from '@react-three/postprocessing'
 
 const Model = () => {
@@ -45,8 +45,6 @@ const Model = () => {
                         shadow-bias={-0.005}
                         shadow-radius={2}
                     />
-
-                    <OrbitControls />
 
                     <primitive ref={earthRef} object={Earth} scale={1} position={[0, -100, -125]} />
 
