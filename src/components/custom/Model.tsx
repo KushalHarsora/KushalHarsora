@@ -1,7 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { PerspectiveCamera, useGLTF } from '@react-three/drei'
+import { OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei'
 import { EffectComposer, BrightnessContrast } from '@react-three/postprocessing'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -15,7 +15,7 @@ const Model = () => {
     const earthRef = React.useRef<THREE.Object3D>(null);
 
     const initProps = {
-        pos: [-250, 100, 60] as [number, number, number],
+        pos: [-250, 15, 30] as [number, number, number],
         intensity: 10 as number,
     }
 
@@ -64,6 +64,8 @@ const Model = () => {
                         far={10000}
                         position={[0, 0, 2]}
                     />
+
+                    <OrbitControls />
 
                     <directionalLight
                         color={'#ffffff'}
