@@ -1,7 +1,7 @@
 import React from 'react'
 import * as THREE from 'three'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, PerspectiveCamera, useGLTF } from '@react-three/drei'
+import { PerspectiveCamera, useGLTF } from '@react-three/drei'
 import { EffectComposer, BrightnessContrast } from '@react-three/postprocessing'
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -64,8 +64,6 @@ const Model = () => {
                         far={10000}
                         position={[0, 0, 2]}
                     />
-
-                    <OrbitControls />
 
                     <directionalLight
                         color={'#ffffff'}
